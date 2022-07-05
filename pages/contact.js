@@ -6,7 +6,9 @@ import AlumniCard from '../components/Cards/AlumniCard';
 import axiosInstance from '../components/axiosInstance';
 
 export async function getStaticProps({ locale }) {
-  const res = await axiosInstance.get(`/contact?locale=${locale}&populate=*`);
+  const res = await axiosInstance.get(
+    `/contact?locale=${locale}&populate[ContactPerson][populate]=%2A&populate[Address][populate]=%2A&populate[Tel][populate]&populate[OfficeHour][populate]`
+  );
   const json = await res.data;
   const content = json['data']['attributes'];
 
@@ -40,7 +42,7 @@ export default function Contact({ content }) {
                 <div className="my-3 font-medium text-md sm:text-lg text-slate-700">
                   {content['ContactPersonHeader']}
                 </div>
-                <AlumniCard />
+                <AlumniCard {...content['ContactPerson']['data']['attributes']} />
               </div>
               <div>
                 <iframe
