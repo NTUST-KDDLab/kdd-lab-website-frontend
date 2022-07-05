@@ -4,9 +4,9 @@ import { getSession } from 'next-auth/react';
 let APIbaseURL;
 
 if (process.env.NODE_ENV === 'production') {
-  APIbaseURL = window.location.origin + '/api/';
+  APIbaseURL = window.location.origin + '/api';
 } else {
-  APIbaseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/api';
+  APIbaseURL = process.env.NEXT_PUBLIC_API_URL + '/api' || 'http://localhost:1337/api';
 }
 
 const axiosInstance = axios.create({
