@@ -1,17 +1,20 @@
 import React from 'react';
 
-export default function AlumniCard({ name, enName, imgUrl, github, email }) {
+export default function AlumniCard({ name, subName, avatar, github, email }) {
   return (
     <>
       <div className="p-3 rounded-lg text-start flex flex-row items-center border hover:shadow-lg ease-linear transition-all duration-150">
         <div className="flex">
           <div className="max-w-[80px] m-2">
-            <img src="../img/jeffery.jpg" className=" rounded-full shadow-lg"></img>
+            <img
+              src={`${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.formats.small.url}`}
+              className="rounded-full shadow-lg"
+            ></img>
           </div>
         </div>
         <div className="m-2">
           <div className="text-lg font-medium">{name}</div>
-          <div className="text-sm font-normal">{enName}</div>
+          <div className="text-sm font-normal">{subName}</div>
           {github || email ? (
             <div className="flex flex-row text-md mt-1">
               {github ? (
