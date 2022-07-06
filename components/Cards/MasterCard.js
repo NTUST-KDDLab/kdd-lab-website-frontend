@@ -1,13 +1,21 @@
 import React from 'react';
 
 export default function MasterCard({ name, subName, avatar, github, email }) {
+  let avatarUrl;
+  if (avatar.data.attributes['format']) {
+    if (avatar.data.attributes.format['small']) {
+      avatarUrl = avatar.data.attributes.formats.small.url;
+    }
+  } else {
+    avatarUrl = avatar.data.attributes.url;
+  }
   return (
     <>
       <div className="p-3 rounded-lg flex flex-row sm:flex-col items-center sm:content-center border hover:shadow-lg ease-linear transition-all duration-150">
         <div className="flex items-center justify-center">
           <picture className="max-w-[100px] sm:max-w-[150px] m-2">
             <img
-              src={`${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.formats.small.url}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}${avatarUrl}`}
               alt={name}
               className="rounded-full shadow-lg "
             ></img>
