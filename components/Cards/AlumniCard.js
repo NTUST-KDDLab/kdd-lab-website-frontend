@@ -1,16 +1,18 @@
 import React from 'react';
+import Image from 'next/image';
 
 export default function AlumniCard({ name, subName, avatar, github, email }) {
   return (
     <>
       <div className="p-3 rounded-lg text-start flex flex-row items-center border hover:shadow-lg ease-linear transition-all duration-150">
         <div className="flex">
-          <div className="max-w-[80px] m-2">
+          <picture className="max-w-[80px] m-2">
             <img
               src={`${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.formats.small.url}`}
+              alt={name}
               className="rounded-full shadow-lg"
-            ></img>
-          </div>
+            />
+          </picture>
         </div>
         <div className="m-2">
           <div className="text-lg font-medium">{name}</div>
@@ -18,7 +20,12 @@ export default function AlumniCard({ name, subName, avatar, github, email }) {
           {github || email ? (
             <div className="flex flex-row text-md mt-1">
               {github ? (
-                <a className="mr-2 text-sm lg:text-md" href={`https://github.com/${github}`} target="_blank">
+                <a
+                  className="mr-2 text-sm lg:text-md"
+                  href={`https://github.com/${github}`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <i className="bi bi-github text-slate-600 hover:text-slate-400"></i>
                 </a>
               ) : null}

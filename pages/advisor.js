@@ -1,4 +1,5 @@
-import React, { lazy } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import Layout from '../layouts/default';
 
 export default function Advisor() {
@@ -40,10 +41,13 @@ export default function Advisor() {
               {/* info */}
               <div className="flex flex-row flex-wrap py-3">
                 <div className="flex w-full sm:w-fit justify-center sm:justify-start  mt-6 sm:mt-0">
-                  <img
-                    src="/img/brdai.jpeg"
-                    className="max-w-[100px] self-center shadow-xl rounded-lg align-middle border-none"
-                  />
+                  <picture>
+                    <img
+                      src="/img/brdai.jpeg"
+                      alt="Bi-Ru Dai"
+                      className="max-w-[100px] self-center shadow-xl rounded-lg align-middle border-none"
+                    />
+                  </picture>
                 </div>
                 <div className="flex flex-col w-full sm:w-fit text-center sm:text-start mt-2 sm:mt-0 sm:ml-4 md:mx-6 sm:py-2">
                   <h3 className="text-2xl lg:text-4xl font-semibold leading-normal text-slate-700">戴碧如</h3>

@@ -25,16 +25,16 @@ export default function MembersIndex({ content }) {
           <div className="p-6 md:p-10">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-700">{content['MasterTitle']}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6 py-4">
-              {content['MasterMembers']['data'].map((member) => (
-                <MasterCard {...member.attributes} />
+              {content['MasterMembers']['data'].map((member, idx) => (
+                <MasterCard key={idx} {...member.attributes} />
               ))}
             </div>
           </div>
           <div className="border-t p-6 md:p-10">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-700">{content['AlumniTitle']}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 py-4">
-              {content['AlumniMembers']['data'].map((member) => (
-                <AlumniCard {...member.attributes} />
+              {content['AlumniMembers']['data'].map((member, idx) => (
+                <AlumniCard key={idx} {...member.attributes} />
               ))}
             </div>
           </div>

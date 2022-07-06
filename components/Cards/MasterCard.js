@@ -5,12 +5,13 @@ export default function MasterCard({ name, subName, avatar, github, email }) {
     <>
       <div className="p-3 rounded-lg flex flex-row sm:flex-col items-center sm:content-center border hover:shadow-lg ease-linear transition-all duration-150">
         <div className="flex items-center justify-center">
-          <div className="max-w-[100px] sm:max-w-[150px] m-2">
+          <picture className="max-w-[100px] sm:max-w-[150px] m-2">
             <img
               src={`${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.formats.small.url}`}
+              alt={name}
               className="rounded-full shadow-lg "
             ></img>
-          </div>
+          </picture>
         </div>
         <div className="mx-2">
           <div className="my-2 sm:text-center">
@@ -21,7 +22,12 @@ export default function MasterCard({ name, subName, avatar, github, email }) {
           {github || email ? (
             <div className="my-2 flex flex-row text-md sm:place-content-center">
               {github ? (
-                <a className="mr-3 text-md lg:text-lg" href={`https://github.com/${github}`} target="_blank">
+                <a
+                  className="mr-3 text-md lg:text-lg"
+                  href={`https://github.com/${github}`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <i className="bi bi-github text-slate-600 hover:text-slate-400"></i>
                 </a>
               ) : null}

@@ -104,7 +104,7 @@ export default function Navbar(props) {
                 </Link>
               </li>
 
-              <li className="flex items-center">
+              <li className="flex items-center hidden">
                 <Link href="/dashboard" locale={false}>
                   <button
                     className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-md uppercase font-bold"

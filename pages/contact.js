@@ -49,7 +49,7 @@ export default function Contact({ content }) {
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2772.6205859305783!2d121.54478349728024!3d25.014974772510268!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aa23fdb8fd51%3A0xf6126da2dfe50537!2z5Y-w54Gj56eR5oqA5aSn5a2456CU5o-a5aSn5qiT!5e0!3m2!1szh-TW!2stw!4v1656496442708!5m2!1szh-TW!2stw"
                   style={{ border: 0 }}
                   className="w-full h-96 md:h-full"
-                  allowfullscreen=""
+                  allowFullScreen=""
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
