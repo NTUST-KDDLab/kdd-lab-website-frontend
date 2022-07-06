@@ -22,7 +22,28 @@ services:
     networks:
       - nextjs
 
+  nginx:
+    container_name: kdd-frontend-nginx
+    build: ./nginx
+    restart: unless-stopped
+    volumes:
+      - ./log:/var/log/nginx
+    networks:
+      - proxy
+      - nextjs
+    depends_on:
+      - frontend
+    environment:
+      - VIRTUAL_HOST=kdd.csie.ntust.edu.tw
+      - VIRTUAL_NETWORK=nginx-proxy
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=kdd.csie.ntust.edu.tw
+      - LETSENCRYPT_EMAIL=ntust-kdd-lab@googlegroups.com
+
 networks:
+  proxy:
+    external:
+      name: self-nginx-proxy
   nextjs:
     name: nextjs
     driver: bridge
