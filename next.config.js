@@ -5,6 +5,7 @@ const nextConfig = {
     locales: ['zh', 'en'],
     defaultLocale: 'zh',
   },
+  output: 'standalone',
 };
 
 module.exports = nextConfig;
