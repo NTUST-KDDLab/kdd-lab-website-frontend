@@ -1,13 +1,7 @@
 import axios from 'axios';
 import { getSession } from 'next-auth/react';
 
-let APIbaseURL;
-
-if (process.env.NODE_ENV === 'production') {
-  APIbaseURL = process.env.NEXT_PUBLIC_API_URL + '/api';
-} else {
-  APIbaseURL = 'http://localhost:1337/api';
-}
+const APIbaseURL = process.env.NEXT_PUBLIC_API_URL + '/api';
 
 const axiosInstance = axios.create({
   baseURL: APIbaseURL,
