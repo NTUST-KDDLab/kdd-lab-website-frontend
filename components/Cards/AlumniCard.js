@@ -2,16 +2,20 @@ import React from 'react';
 import Image from 'next/image';
 
 export default function AlumniCard({ name, subName, avatar, github, email }) {
+  let avatarUrl;
+  if (avatar.data.attributes['format']) {
+    if (avatar.data.attributes.format['small']) {
+      avatarUrl = avatar.data.attributes.formats.small.url;
+    }
+  } else {
+    avatarUrl = avatar.data.attributes.url;
+  }
   return (
     <>
       <div className="p-3 rounded-lg text-start flex flex-row items-center border hover:shadow-lg ease-linear transition-all duration-150">
         <div className="flex">
           <picture className="max-w-[80px] m-2">
-            <img
-              src={`${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.formats.small.url}`}
-              alt={name}
-              className="rounded-full shadow-lg"
-            />
+            <img src={`${process.env.NEXT_PUBLIC_API_URL}${avatarUrl}`} alt={name} className="rounded-full shadow-lg" />
           </picture>
         </div>
         <div className="m-2">
