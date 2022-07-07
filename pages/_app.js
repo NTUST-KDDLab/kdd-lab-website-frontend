@@ -40,6 +40,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"></link>
         <link rel="manifest" href="/site.webmanifest" />
+        {/* for google search console */}
+        <meta name="google-site-verification" content="v-FxiOaP1ITDLWvFDv0azBDK2ksxQF7pDETwcamAbzc" />
       </Head>
       <Layout>
         {Component.auth ? (
