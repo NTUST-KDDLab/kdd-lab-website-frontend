@@ -11,19 +11,19 @@ const content = {
   zh: zh.header,
 };
 
-export default function Error404() {
+export default function Error500() {
   const router = useRouter();
   const locale = router.locale;
   return (
     <>
       <Head>
-        <title>404 | {content[locale]}</title>
+        <title>500 | {content[locale]}</title>
       </Head>
       <section className="header relative pt-16 items-center flex h-screen">
         <div className="container mx-auto items-center flex flex-wrap flex-row justify-center">
           <div className="w-full text-center md:w-6/12 px-12 md:px-4">
-            <h2 className="font-semibold text-4xl text-slate-600">404</h2>
-            <p className="text-lg leading-relaxed mt-4 mb-4 text-slate-500">NOT FOUND</p>
+            <h2 className="font-semibold text-4xl text-slate-600">500</h2>
+            <p className="text-lg leading-relaxed mt-4 mb-4 text-slate-500">INTERNAL SERVER ERROR</p>
           </div>
         </div>
       </section>
@@ -31,4 +31,4 @@ export default function Error404() {
   );
 }
 
-Error404.layout = Layout;
+Error500.layout = Layout;

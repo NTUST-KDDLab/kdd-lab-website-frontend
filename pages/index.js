@@ -2,6 +2,15 @@ import Layout from '../layouts/default';
 import Link from 'next/link';
 import axiosInstance from '../components/axiosInstance';
 
+import en from '../i18n/en.json';
+import zh from '../i18n/zh.json';
+import Head from 'next/head';
+
+const header = {
+  en: en.header,
+  zh: zh.header,
+};
+
 export async function getStaticProps({ locale }) {
   const res = await axiosInstance.get(`/home-page?locale=${locale}&populate=*`);
   const json = await res.data;
@@ -10,13 +19,19 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       content,
+      locale,
     },
   };
 }
 
-export default function Home({ content }) {
+export default function Home({ content, locale }) {
   return (
     <>
+      <Head>
+        <title>{header[locale]}</title>
+        <meta property="og:title" content={header[locale]} />
+      </Head>
+      <h1 className="hidden">{header[locale]}</h1>
       <section className="header relative pt-16 items-center flex h-screen">
         <div className="container mx-auto items-center flex flex-wrap">
           <div className="w-full md:w-8/12 lg:w-8/12 xl:w-8/12 px-4">
@@ -26,7 +41,7 @@ export default function Home({ content }) {
               <p className="mt-4 text-lg leading-relaxed text-slate-500">{content['Welcome']}</p>
               <div className="mt-12">
                 {content['CTAButtons'].map((CTAButton, i) => (
-                  <Link href={CTAButton['Href']} key={i}>
+                  <Link href={CTAButton['Href']} key={i} passHref>
                     <a>
                       <div className="get-started inline text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-slate-400 active:bg-slate-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
                         {CTAButton['Text']}
@@ -39,7 +54,7 @@ export default function Home({ content }) {
           </div>
         </div>
       </section>
-      <section className="mt-24 md:mt-20 pb-px relative bg-slate-100">
+      <section id="research" className="mt-24 md:mt-20 pb-px relative bg-slate-100">
         <div className=" top-0 bottom-auto left-0 right-0 w-full absolute" style={{ transform: 'translateZ(0)' }}>
           <svg
             className="absolute bottom-0 overflow-hidden"
@@ -72,7 +87,7 @@ export default function Home({ content }) {
                       </div>
                     ) : null}
 
-                    <h6 className="text-xl mb-1 font-semibold text-slate-100">{topic['Title']}</h6>
+                    <h3 className="text-xl mb-1 font-semibold text-slate-100">{topic['Title']}</h3>
                     <p className="mb-4 text-slate-400">{topic['Content']}</p>
                   </div>
                 </div>

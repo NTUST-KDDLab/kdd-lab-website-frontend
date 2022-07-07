@@ -36,9 +36,9 @@ export default function Footer() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap text-center lg:text-left">
             <div className="w-full lg:w-6/12 px-4">
-              <h4 className="text-xl lg:text-3xl font-semibold">{content[locale]['lab']}</h4>
-              <h5 className="text-sm lg:text-md my-1 lg:my-2 text-slate-600">{content[locale]['address']}</h5>
-              <h5 className="text-sm lg:text-md my-1 lg:my-2 text-slate-600">{content[locale]['tel']}</h5>
+              <h6 className="text-xl lg:text-3xl font-semibold">{content[locale]['lab']}</h6>
+              <div className="text-sm lg:text-md my-1 lg:my-2 text-slate-600">{content[locale]['address']}</div>
+              <div className="text-sm lg:text-md my-1 lg:my-2 text-slate-600">{content[locale]['tel']}</div>
             </div>
             <div className="w-full lg:w-6/12 px-4 mt-2 lg:mt-0">
               <div className="flex flex-wrap items-top">
@@ -47,78 +47,29 @@ export default function Footer() {
                     {content[locale]['navigate']}
                   </span>
 
-                  <Link href="/advisor">
-                    <button
-                      className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                      type="link"
-                    >
+                  <Link href="/advisor" passHref>
+                    <a className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm" type="link">
                       {content[locale]['advisor']}
-                    </button>
+                    </a>
                   </Link>
 
-                  <Link href="/members">
-                    <button
-                      className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                      type="link"
-                    >
+                  <Link href="/members" passHref>
+                    <a className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm" type="link">
                       {content[locale]['members']}
-                    </button>
+                    </a>
                   </Link>
 
-                  <Link href="/events">
-                    <button
-                      className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                      type="link"
-                    >
+                  <Link href="/events" passHref>
+                    <a className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm" type="link">
                       {content[locale]['events']}
-                    </button>
+                    </a>
                   </Link>
 
-                  <Link href="/contact">
-                    <button
-                      className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                      type="link"
-                    >
+                  <Link href="/contact" passHref>
+                    <a className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm" type="link">
                       {content[locale]['contact']}
-                    </button>
+                    </a>
                   </Link>
-                </div>
-                <div className="w-full lg:w-4/12 px-4 hidden">
-                  <span className="block uppercase text-slate-500 text-sm font-semibold mb-2">Other Resources</span>
-                  <ul className="list-unstyled">
-                    <li>
-                      <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                        href="https://github.com/creativetimofficial/notus-nextjs/blob/main/LICENSE.md?ref=nnjs-footer"
-                      >
-                        MIT License
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/terms?ref=nnjs-footer"
-                      >
-                        Terms & Conditions
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/privacy?ref=nnjs-footer"
-                      >
-                        Privacy Policy
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/contact-us?ref=nnjs-footer"
-                      >
-                        Contact Us
-                      </a>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -128,9 +79,6 @@ export default function Footer() {
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-slate-500 font-semibold py-1">
                 Copyright © {new Date().getFullYear()} NTUST KDD Lab
-              </div>
-              <div className="text-xs text-slate-400 font-semibold py-1 hidden">
-                Start template from Notus NextJS by Creative Tim
               </div>
             </div>
           </div>

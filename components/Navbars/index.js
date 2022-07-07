@@ -25,7 +25,7 @@ export default function Navbar(props) {
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <Link href="/">
+            <Link href="/" passHref>
               <button
                 className="text-slate-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
                 type="link"
@@ -60,59 +60,59 @@ export default function Navbar(props) {
             </ul> */}
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
-                <Link href="/advisor">
-                  <button
+                <Link href="/advisor" passHref>
+                  <a
                     className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     type="link"
                   >
                     <span className="inline-block">{content[locale]['advisor']}</span>
                     {/* <i className="text-slate-400 bi bi-box-arrow-up-right text-md leading-lg " /> */}
-                  </button>
+                  </a>
                 </Link>
               </li>
               <li className="flex items-center">
-                <Link href="/members">
-                  <button
+                <Link href="/members" passHref>
+                  <a
                     className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     type="link"
                   >
                     <span className="inline-block">{content[locale]['members']}</span>
                     {/* <i className="text-slate-400 bi bi-box-arrow-up-right text-lg leading-lg " /> */}
-                  </button>
+                  </a>
                 </Link>
               </li>
               <li className="flex items-center">
-                <Link href="/events">
-                  <button
+                <Link href="/events" passHref>
+                  <a
                     className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     type="link"
                   >
                     <span className="inline-block">{content[locale]['events']}</span>
                     {/* <i className="text-slate-400 bi bi-box-arrow-up-right text-lg leading-lg " /> */}
-                  </button>
+                  </a>
                 </Link>
               </li>
               <li className="flex items-center">
-                <Link href="/contact">
-                  <button
+                <Link href="/contact" passHref>
+                  <a
                     className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                     type="link"
                   >
                     <span className="inline-block">{content[locale]['contact']}</span>
                     {/* <i className="text-slate-400 bi bi-box-arrow-up-right text-lg leading-lg " /> */}
-                  </button>
+                  </a>
                 </Link>
               </li>
 
               <li className="flex items-center hidden">
-                <Link href="/dashboard" locale={false}>
-                  <button
+                <Link href="/dashboard" locale={false} passHref>
+                  <a
                     className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-md uppercase font-bold"
                     type="link"
                   >
                     <i className="bi bi-speedometer2"></i>
                     {/* <i className="text-slate-400 bi bi-box-arrow-up-right text-lg leading-lg " /> */}
-                  </button>
+                  </a>
                 </Link>
               </li>
 

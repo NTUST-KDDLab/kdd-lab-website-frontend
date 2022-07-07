@@ -15,7 +15,12 @@ export default function AlumniCard({ name, subName, avatar, github, email }) {
       <div className="p-3 rounded-lg text-start flex flex-row items-center border hover:shadow-lg ease-linear transition-all duration-150">
         <div className="flex">
           <picture className="max-w-[80px] m-2">
-            <img src={`${process.env.NEXT_PUBLIC_API_URL}${avatarUrl}`} alt={name} className="rounded-full shadow-lg" />
+            <img
+              src={`${process.env.NEXT_PUBLIC_API_URL}${avatarUrl}`}
+              alt={name}
+              loading="lazy"
+              className="rounded-full shadow-lg"
+            />
           </picture>
         </div>
         <div className="m-2">
@@ -28,7 +33,7 @@ export default function AlumniCard({ name, subName, avatar, github, email }) {
                   className="mr-2 text-sm lg:text-md"
                   href={`https://github.com/${github}`}
                   target="_blank"
-                  rel="noreferrer noopener"
+                  rel="noreferrer noopener nofollow"
                 >
                   <i className="bi bi-github text-slate-600 hover:text-slate-400"></i>
                 </a>

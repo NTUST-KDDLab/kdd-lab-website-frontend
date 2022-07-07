@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../../layouts/default';
-import Alert from '../../components/Alert';
+import Head from 'next/head';
+import { useState, useEffect } from 'react';
 
 import {
   add,
@@ -16,8 +16,18 @@ import {
   parseISO,
   startOfToday,
 } from 'date-fns';
-import { useState, useEffect } from 'react';
+
+import Layout from '../../layouts/default';
+import Alert from '../../components/Alert';
 import axiosInstance from '../../components/axiosInstance';
+
+import en from '../../i18n/en.json';
+import zh from '../../i18n/zh.json';
+
+const title = {
+  en: { title: en.header, prefix: en.navbar.events },
+  zh: { title: zh.header, prefix: zh.navbar.events },
+};
 
 // const meetings = [
 //   {
@@ -231,9 +241,18 @@ function Meeting({ meeting }) {
 
 let colStartClasses = ['', 'col-start-2', 'col-start-3', 'col-start-4', 'col-start-5', 'col-start-6', 'col-start-7'];
 
-export default function EventIndex() {
+export default function EventIndex({ locale }) {
   return (
     <>
+      <Head>
+        <title>
+          {title[locale].prefix} | {title[locale].title}
+        </title>
+        <meta property="og:title" content={`${title[locale].prefix} | ${title[locale].title}`} />
+      </Head>
+      <h1 className="hidden">
+        {title[locale].prefix} | {title[locale].title}
+      </h1>
       <section className="flex relative md:min-h-screen py-16">
         <div className="container flex flex-col mx-auto justify-center px-2 py-8 md:py-16">
           <Alert className="bg-slate-500 text-white w-full">
@@ -249,15 +268,10 @@ export default function EventIndex() {
   );
 }
 
-// export async function getServerSideProps({ locale }) {
-//   const res = await axiosInstance.get(`/events`);
-//   const json = await res.data;
-//   console.log(json);
-//   const events = json['data'];
-
-//   return {
-//     props: { events },
-//   };
-// }
+export async function getServerSideProps({ locale }) {
+  return {
+    props: { locale },
+  };
+}
 
 EventIndex.layout = Layout;
