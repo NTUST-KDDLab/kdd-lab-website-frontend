@@ -54,7 +54,7 @@ export default function Sidebar() {
           <NavList>
             <NavLink name="Dashboard" path={dashboardPath} router={router} />
             <NavLink name="Members" path={dashboardPath + '/'} router={router} />
-            <NavLink name="Events" path={dashboardPath + '/'} router={router} />
+            <NavLink name="Events" path={dashboardPath + '/events'} router={router} />
             <NavLink name="Resources" path={dashboardPath + '/'} router={router} />
             <NavLink name="News" path={dashboardPath + '/'} router={router} />
           </NavList>
