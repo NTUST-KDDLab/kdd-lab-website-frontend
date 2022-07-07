@@ -1,11 +1,20 @@
 import React from 'react';
 
+import Head from 'next/head';
 import Layout from '../../layouts/default';
 import MasterCard from '../../components/Cards/MasterCard';
 import AlumniCard from '../../components/Cards/AlumniCard';
 import axiosInstance from '../../components/axiosInstance';
 
-export async function getStaticProps() {
+import en from '../../i18n/en.json';
+import zh from '../../i18n/zh.json';
+
+const title = {
+  en: { title: en.header, prefix: en.navbar.members },
+  zh: { title: zh.header, prefix: zh.navbar.members },
+};
+
+export async function getStaticProps({ locale }) {
   const res = await axiosInstance.get(
     `/members-page?populate[MasterMembers][populate]=%2A&populate[AlumniMembers][populate]=%2A`
   );
@@ -13,13 +22,18 @@ export async function getStaticProps() {
   const content = json['data']['attributes'];
 
   return {
-    props: { content },
+    props: { content, locale },
   };
 }
 
-export default function MembersIndex({ content }) {
+export default function MembersIndex({ content, locale }) {
   return (
     <>
+      <Head>
+        <title>
+          {title[locale].prefix} | {title[locale].title}
+        </title>
+      </Head>
       <section className="flex relative min-h-screen py-16">
         <div className="container mx-auto justify-center p-2 md:my-auto">
           <div className="p-6 md:p-10">

@@ -1,9 +1,17 @@
 import React from 'react';
-
+import Head from 'next/head';
 import Layout from '../layouts/default';
 import AlumniCard from '../components/Cards/AlumniCard';
 
 import axiosInstance from '../components/axiosInstance';
+
+import en from '../i18n/en.json';
+import zh from '../i18n/zh.json';
+
+const title = {
+  en: { title: en.header, prefix: en.navbar.contact },
+  zh: { title: zh.header, prefix: zh.navbar.contact },
+};
 
 export async function getStaticProps({ locale }) {
   const res = await axiosInstance.get(
@@ -13,13 +21,18 @@ export async function getStaticProps({ locale }) {
   const content = json['data']['attributes'];
 
   return {
-    props: { content },
+    props: { content, locale },
   };
 }
 
-export default function Contact({ content }) {
+export default function Contact({ content, locale }) {
   return (
     <>
+      <Head>
+        <title>
+          {title[locale].prefix} | {title[locale].title}
+        </title>
+      </Head>
       <section className="flex relative md:min-h-screen py-16">
         <div className="container mx-auto justify-center p-2 md:my-auto">
           <div className="p-6 md:p-10">

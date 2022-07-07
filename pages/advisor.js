@@ -1,10 +1,29 @@
 import React from 'react';
-import Image from 'next/image';
+import Head from 'next/head';
 import Layout from '../layouts/default';
 
-export default function Advisor() {
+import en from '../i18n/en.json';
+import zh from '../i18n/zh.json';
+
+const title = {
+  en: { title: en.header, prefix: en.navbar.advisor },
+  zh: { title: zh.header, prefix: zh.navbar.advisor },
+};
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: { locale },
+  };
+}
+
+export default function Advisor({ locale }) {
   return (
     <>
+      <Head>
+        <title>
+          {title[locale].prefix} | {title[locale].title}
+        </title>
+      </Head>
       <main className="profile-page">
         {/* bg-image */}
         <section className="relative block h-96">
