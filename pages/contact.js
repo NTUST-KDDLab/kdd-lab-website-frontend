@@ -32,29 +32,31 @@ export default function Contact({ content, locale }) {
         <title>
           {title[locale].prefix} | {title[locale].title}
         </title>
+        <meta property="og:title" content={`${title[locale].prefix} | ${title[locale].title}`} />
       </Head>
+      <h1 className="hidden">
+        {title[locale].prefix} | {title[locale].title}
+      </h1>
       <section className="flex relative md:min-h-screen py-16">
         <div className="container mx-auto justify-center p-2 md:my-auto">
           <div className="p-6 md:p-10">
-            <h3 className="text-2xl sm:text-4xl font-bold text-slate-700">{content['Header']}</h3>
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-700">{content['Header']}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
               <div>
-                <div className="my-3 font-semibold text-xl sm:text-2xl text-slate-700">{content['Lab']}</div>
-                <div className="my-3 font-medium text-md sm:text-lg text-slate-700">
+                <h3 className="my-3 font-semibold text-xl sm:text-2xl text-slate-700">{content['Lab']}</h3>
+                <h4 className="my-3 font-medium text-md sm:text-lg text-slate-700">
                   {content['OfficeHour']['Header']}
-                </div>
+                </h4>
                 <div className="my-3 font-normal text-sm sm:text-md text-slate-500">
                   {content['OfficeHour']['Content']}
                 </div>
-                <div className="my-3 font-medium text-md sm:text-lg text-slate-700">{content['Tel']['Header']}</div>
+                <h4 className="my-3 font-medium text-md sm:text-lg text-slate-700">{content['Tel']['Header']}</h4>
                 <div className="my-3 font-normal text-sm sm:text-md text-slate-500">{content['Tel']['Content']}</div>
-                <div className="my-3 font-medium text-md sm:text-lg text-slate-700">{content['Address']['Header']}</div>
+                <h4 className="my-3 font-medium text-md sm:text-lg text-slate-700">{content['Address']['Header']}</h4>
                 <div className="my-3 font-normal text-sm sm:text-md text-slate-500">
                   {content['Address']['Content']}
                 </div>
-                <div className="my-3 font-medium text-md sm:text-lg text-slate-700">
-                  {content['ContactPersonHeader']}
-                </div>
+                <h4 className="my-3 font-medium text-md sm:text-lg text-slate-700">{content['ContactPersonHeader']}</h4>
                 <AlumniCard {...content['ContactPerson']['data']['attributes']} />
               </div>
               <div>

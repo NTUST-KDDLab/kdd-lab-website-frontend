@@ -248,7 +248,11 @@ export default function EventIndex({ locale }) {
         <title>
           {title[locale].prefix} | {title[locale].title}
         </title>
+        <meta property="og:title" content={`${title[locale].prefix} | ${title[locale].title}`} />
       </Head>
+      <h1 className="hidden">
+        {title[locale].prefix} | {title[locale].title}
+      </h1>
       <section className="flex relative md:min-h-screen py-16">
         <div className="container flex flex-col mx-auto justify-center px-2 py-8 md:py-16">
           <Alert className="bg-slate-500 text-white w-full">

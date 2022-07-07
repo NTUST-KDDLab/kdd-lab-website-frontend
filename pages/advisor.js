@@ -23,7 +23,11 @@ export default function Advisor({ locale }) {
         <title>
           {title[locale].prefix} | {title[locale].title}
         </title>
+        <meta property="og:title" content={`${title[locale].prefix} | ${title[locale].title}`} />
       </Head>
+      <h1 className="hidden">
+        {title[locale].prefix} | {title[locale].title}
+      </h1>
       <main className="profile-page">
         {/* bg-image */}
         <section className="relative block h-96">

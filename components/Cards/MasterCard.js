@@ -17,6 +17,7 @@ export default function MasterCard({ name, subName, avatar, github, email }) {
             <img
               src={`${process.env.NEXT_PUBLIC_API_URL}${avatarUrl}`}
               alt={name}
+              loading="lazy"
               className="rounded-full shadow-lg "
             ></img>
           </picture>
@@ -34,7 +35,7 @@ export default function MasterCard({ name, subName, avatar, github, email }) {
                   className="mr-3 text-md lg:text-lg"
                   href={`https://github.com/${github}`}
                   target="_blank"
-                  rel="noreferrer noopener"
+                  rel="noreferrer noopener nofollow"
                 >
                   <i className="bi bi-github text-slate-600 hover:text-slate-400"></i>
                 </a>
