@@ -14,7 +14,7 @@ const title = {
   zh: { title: zh.header, prefix: zh.navbar.members },
 };
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale }) {
   const res = await axiosInstance.get(
     `/members-page?populate[MasterMembers][populate]=%2A&populate[AlumniMembers][populate]=%2A`
   );

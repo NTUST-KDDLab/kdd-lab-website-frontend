@@ -13,7 +13,7 @@ const title = {
   zh: { title: zh.header, prefix: zh.navbar.contact },
 };
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale }) {
   const res = await axiosInstance.get(
     `/contact?locale=${locale}&populate[ContactPerson][populate]=%2A&populate[Address][populate]=%2A&populate[Tel][populate]&populate[OfficeHour][populate]`
   );
