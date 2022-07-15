@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 import { SessionProvider, useSession } from 'next-auth/react';
 import '../styles/globals.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -42,6 +43,17 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <link rel="manifest" href="/site.webmanifest" />
         {/* for google search console */}
         <meta name="google-site-verification" content="v-FxiOaP1ITDLWvFDv0azBDK2ksxQF7pDETwcamAbzc" />
+        {/* Global site tag (gtag.js) - Google Analytics */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-GV6H1RY367" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-GV6H1RY367');
+        `}
+        </Script>
       </Head>
       <Layout>
         {Component.auth ? (
