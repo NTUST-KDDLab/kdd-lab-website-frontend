@@ -11,7 +11,7 @@ const header = {
   zh: zh.header,
 };
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale }) {
   const res = await axiosInstance.get(`/home-page?locale=${locale}&populate=*`);
   const json = await res.data;
   const content = json['data']['attributes'];
