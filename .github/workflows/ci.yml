@@ -8,10 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Get pwd
-        run: pwd
-      - name: Get files
-        run: ls
+      - uses: actions/checkout@main
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.2.11
         env:
