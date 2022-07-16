@@ -3,11 +3,7 @@ name: Frontend CI
 on:
   push:
     branches: [develop, main]
-
-defaults:
-  run:
-    working-directory: ./
-
+    
 jobs:
   deploy:
     runs-on: ubuntu-latest
