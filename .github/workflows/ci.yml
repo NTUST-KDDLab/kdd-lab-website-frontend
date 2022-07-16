@@ -11,7 +11,7 @@ jobs:
       - name: Get pwd
         run: pwd
       - name: Get files
-        run: la
+        run: ls
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.2.11
         env:
