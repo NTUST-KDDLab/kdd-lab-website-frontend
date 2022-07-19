@@ -13,12 +13,12 @@ export default function MasterCard({ name, subName, avatar, github, email }) {
     <>
       <div className="p-3 rounded-lg flex flex-row sm:flex-col items-center sm:content-center border hover:shadow-lg ease-linear transition-all duration-150">
         <div className="flex items-center justify-center">
-          <picture className="max-w-[100px] sm:max-w-[150px] m-2">
+          <picture className="max-w-[100px] sm:max-w-[150px] aspect-square m-2">
             <img
               src={`${process.env.NEXT_PUBLIC_API_URL}${avatarUrl}`}
               alt={name}
               loading="lazy"
-              className="rounded-full shadow-lg "
+              className="w-full h-full rounded-full shadow-lg object-cover"
             ></img>
           </picture>
         </div>

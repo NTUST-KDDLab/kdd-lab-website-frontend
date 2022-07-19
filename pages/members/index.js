@@ -42,7 +42,7 @@ export default function MembersIndex({ content, locale }) {
         <div className="container mx-auto justify-center p-2 md:my-auto">
           <div className="p-6 md:p-10">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-700">{content['MasterTitle']}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6 py-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 py-4">
               {content['MasterMembers']['data'].map((member, idx) => (
                 <MasterCard key={idx} {...member.attributes} />
               ))}

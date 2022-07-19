@@ -13,17 +13,17 @@ export default function AlumniCard({ name, subName, avatar, github, email }) {
   return (
     <>
       <div className="p-3 rounded-lg text-start flex flex-row items-center border hover:shadow-lg ease-linear transition-all duration-150">
-        <div className="flex">
-          <picture className="max-w-[80px] m-2">
+        <div className="flex max-w-4/12">
+          <picture className="max-w-[80px] aspect-square m-2">
             <img
               src={`${process.env.NEXT_PUBLIC_API_URL}${avatarUrl}`}
               alt={name}
               loading="lazy"
-              className="rounded-full shadow-lg"
+              className="w-full h-full rounded-full shadow-lg object-cover"
             />
           </picture>
         </div>
-        <div className="m-2">
+        <div className="m-2 w-8/12">
           <div className="text-lg font-medium">{name}</div>
           <div className="text-sm font-normal">{subName}</div>
           {github || email ? (
