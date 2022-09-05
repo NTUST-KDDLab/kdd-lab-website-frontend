@@ -39,6 +39,7 @@ export default function DashboardEvents() {
                 <ColumnHeader>Date</ColumnHeader>
                 <ColumnHeader>Time</ColumnHeader>
                 <ColumnHeader>Attendees</ColumnHeader>
+                <ColumnHeader>Edit</ColumnHeader>
                 <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
               </tr>
             </thead>
@@ -73,7 +74,7 @@ export default function DashboardEvents() {
 // }
 
 DashboardEvents.layout = DashboardLayout;
-DashboardEvents.auth = true;
+DashboardEvents.auth = false;
 
 const ColumnHeader = ({ children }) => {
   return (

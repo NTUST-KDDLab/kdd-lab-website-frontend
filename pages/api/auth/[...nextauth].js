@@ -1,50 +1,54 @@
-import NextAuth from 'next-auth/next';
-import GoogleProvider from 'next-auth/providers/google';
-import axiosInstance from '../../../components/axiosInstance';
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { signIn } from '../../../services/auth';
 
 export default NextAuth({
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authorizationUrl:
-        'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
-      checks: console.log(),
-    }),
-  ],
-  jwt: {
-    encryption: true,
-  },
-  secret: process.env.JWT_SECRET,
-  callbacks: {
-    async jwt({ token, user, account }) {
-      const isSignIn = user ? true : false;
-      if (isSignIn) {
-        const response = await axiosInstance.get(
-          `/auth/${account.provider}/callback?access_token=${account.access_token}`
-        );
-        const data = response.data;
-        token.jwt = data.jwt;
-        token.user = data.user.id;
+  // Configure one or more authentication providers
+  providers: [CredentialsProvider({
+    name: 'Sign in with Email',
+    credentials: {
+      email: { label: 'Email', type: 'text' },
+      password: { label: 'Password', type: 'password' },
+    },
+    async authorize(credentials, req) {
+      /**
+       * This function is used to define if the user is authenticated or not.
+       * If authenticated, the function should return an object contains the user data.
+       * If not, the function should return `null`.
+       */
+      if (credentials == null) return null;
+      /**
+       * credentials is defined in the config above.
+       * We can expect it contains two properties: `email` and `password`
+       */
+      try {
+        const { user, jwt } = await signIn({
+          email: credentials.email,
+          password: credentials.password,
+        });
+        return { ...user, jwt };
+      } catch (error) {
+        // Sign In Fail
+        return null;
       }
-
-      return Promise.resolve(token);
     },
-    async session({ session, token }) {
-      // Send properties to the client, like an access_token from a provider.
-      // console.log(session, token);
-      session.jwt = token.jwt;
-      session.user.id = token.id;
-      return Promise.resolve(session);
-    },
+  }),
+],
+jwt: {
+  encryption: true,
+},
+callbacks: {
+  session: async ({ session, token }) => {
+    session.id = token.id;
+    session.jwt = token.jwt;
+    return Promise.resolve(session);
   },
-
-  // TODO
-  // pages: {
-  //   signIn: '/auth/signin',
-  //   signOut: '/auth/signout',
-  //   error: '/auth/error', // Error code passed in query string as ?error=
-  //   verifyRequest: '/auth/verify-request', // (used for check email message)
-  //   newUser: '/auth/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
-  // },
+  jwt: async ({ token, user }) => {
+    const isSignIn = user ? true : false;
+    if (isSignIn) { token.id = user.id;
+      token.jwt = user.jwt;
+    }
+    return Promise.resolve(token);
+  },
+},
 });

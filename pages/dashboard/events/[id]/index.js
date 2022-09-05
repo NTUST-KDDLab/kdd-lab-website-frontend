@@ -55,7 +55,7 @@ export default function Event() {
                     <div className="mr-2">
                       <Avatar
                         alt={attendee.attributes.name}
-                        src={attendee.attributes.avatar.data.attributes.formats.thumbnail.url}
+                        src={attendee.attributes.avatar.data.attributes.url}
                         shift={false}
                       />
                     </div>
@@ -83,4 +83,4 @@ export default function Event() {
 }
 
 Event.layout = DashboardLayout;
-Event.auth = true;
+Event.auth = false;

@@ -47,17 +47,6 @@ export default function Row({ idx, title, date, startTime, endTime, attendees })
           {attendeesLight.length === 0 ? <div className="w-10 h-10 rounded-full flex flex-shrink-0"></div> : null}
         </div>
       </td>
-      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-md whitespace-nowrap p-4 text-right flex flex-row gap-2 justify-end">
-        <Link href={`/dashboard/events/${idx}/edit`}>
-          <a className="text-slate-500 p-1 border rounded h-8 w-8 flex justify-center hover:bg-slate-200">
-            <i className="bi bi-pencil"></i>
-          </a>
-        </Link>
-
-        <button className="text-red-500 p-1 border border-red-200 rounded h-8 w-8 flex justify-center hover:bg-red-200">
-          <i className="bi bi-trash"></i>
-        </button>
-      </td>
     </tr>
   );
 }

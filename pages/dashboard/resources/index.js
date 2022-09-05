@@ -1,6 +1,6 @@
-import DashboardLayout from '../../layouts/dashboard';
-import axiosInstance from '../../components/axiosInstance';
-import Row from '../../components/Events/Row';
+import DashboardLayout from '../../../layouts/dashboard';
+import axiosInstance from '../../../components/axiosInstance';
+import Dashboardrow from '../../../components/Events/dashboardrow';
 import { useEffect, useState } from 'react';
 
 export default function DashboardEvents() {
@@ -9,7 +9,7 @@ export default function DashboardEvents() {
 
   useEffect(() => {
     axiosInstance
-      .get(`/events/?populate[0]=attendees.avatar&populate[1]=resources.author.avatar&sort=date:desc`)/*拿最新10個日期資訊 */
+      .get(`/events/?populate[0]=attendees.avatar&populate[1]=resources.author.avatar&populate[2]=resources.file`)
       .then((res) => {
         const json = res.data;
         setData(json['data']);
@@ -26,7 +26,7 @@ export default function DashboardEvents() {
         <div className="rounded-t mb-0 px-6 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h3 className={'font-semibold text-lg text-slate-700'}>Events</h3>
+              <h3 className={'font-semibold text-lg text-slate-700'}>Paper</h3>
             </div>
           </div>
         </div>
@@ -36,15 +36,15 @@ export default function DashboardEvents() {
             <thead>
               <tr>
                 <ColumnHeader>Title</ColumnHeader>
-                <ColumnHeader>Date</ColumnHeader>
-                <ColumnHeader>Time</ColumnHeader>
-                <ColumnHeader>Attendees</ColumnHeader>
+                <ColumnHeader>author</ColumnHeader>
+                <ColumnHeader>slide</ColumnHeader>
                 <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
               </tr>
             </thead>
             <tbody>
               {data.map((meeting, idx) => (
-                <Row key={idx} idx={meeting.id} {...meeting.attributes} />
+                <Dashboardrow key={idx} idx={meeting.id} {...meeting.attributes} />
+                
               ))}
             </tbody>
           </table>
@@ -56,8 +56,24 @@ export default function DashboardEvents() {
   );
 }
 
+// export async function getServerSideProps() {
+//   const res = await axiosInstance.get(
+//     `/events?populate[attendees][populate]=*&populate[resources][populate]=*&sort=date:desc`
+//   );
+//   const json = await res.data;
+//   const data = json['data'];
+//   const pagination = json['meta']['pagination'];
+
+//   return {
+//     props: {
+//       data,
+//       pagination,
+//     },
+//   };
+// }
+
 DashboardEvents.layout = DashboardLayout;
-DashboardEvents.auth = true;
+DashboardEvents.auth = false;
 
 const ColumnHeader = ({ children }) => {
   return (
