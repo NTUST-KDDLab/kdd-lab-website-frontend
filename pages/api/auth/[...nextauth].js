@@ -1,7 +1,6 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { signIn } from '../../../services/auth';
-
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [CredentialsProvider({
@@ -37,6 +36,7 @@ export default NextAuth({
 jwt: {
   encryption: true,
 },
+secret:process.env.SECRET,
 callbacks: {
   session: async ({ session, token }) => {
     session.id = token.id;
