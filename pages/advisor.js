@@ -197,6 +197,11 @@ export default function Advisor({ locale }) {
                       </li>
 
                       <li>
+                      Bing-Hao Huang, Bi-Ru Dai: A Weighted Distance Similarity Model to Improve the Accuracy of
+                      Collaborative Recommender System. MDM (2) 2015: 104-109 (EI)
+                      </li>
+
+                      <li>
                       Bo-Yu Hsiao, Chih-Heng Chung, Bi-Ru Dai: A Model of Relevant Common Author and Citation
                       Authority Propagation for Citation Recommendation. MDM (2) 2015: 117-119 (EI)
                       </li>
