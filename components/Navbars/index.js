@@ -81,7 +81,7 @@ export default function Navbar(props) {
                   </a>
                 </Link>
               </li>
-              <li className="flex items-center hidden">
+              <li className="flex items-center ">
                 <Link href="/events" passHref>
                   <a
                     className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -92,7 +92,7 @@ export default function Navbar(props) {
                   </a>
                 </Link>
               </li>
-              <li className="flex items-center ">
+              <li className="flex items-center hidden">
                 <Link href="/contact" passHref>
                   <a
                     className="hover:text-slate-500 text-slate-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
