@@ -9,14 +9,7 @@ export default function Resfile({ file, author,title}) {
         type="link"
         href={`${process.env.NEXT_PUBLIC_API_URL}${file.data.attributes.url}`}
       >
-          <Avatar
-            alt={author.data.attributes.name}
-            src={author.data.attributes.avatar.data.attributes.url}
-            shift={false}
-          />
-
-          <div>{author.data.attributes.name}</div>
-          <div>{`(${file.data.attributes.name})`}</div>
+         <div><i className="bi bi-download"></i></div>
       </a>
       </div>
     );

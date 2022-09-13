@@ -3,14 +3,26 @@ import Link from 'next/link';
 import React, { useRef } from 'react';
 import File from '../File';
 import Resfile from '../resfile';
-export default function Dashboardrow({ idx, file ,author,title}) {
+export default function Dashboardrow({ idx, file ,author,title,type}) {
+  if (file.data != null) {
   return (
     
-        <div className="flex">
-            <div>
+    <tr className="items-center">
+    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+    {title}
+    </th>
+    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{author.data.attributes.name}</td>
+    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{type}</td>
+    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+      <div className="flex">
+      <div>
               {file.data!=null ? <div> <tr className="items-center"><td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 <Resfile key={idx} file={file} author={author} title={title}/> </td></tr></div>:null}
             </div>
-        </div>
+      </div>
+    </td>
+  </tr>
+
   );
+  }
 }

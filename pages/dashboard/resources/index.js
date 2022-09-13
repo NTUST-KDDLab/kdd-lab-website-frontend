@@ -50,7 +50,7 @@ export default function DashboardEvents() {
         <div className="rounded-t mb-0 px-6 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h3 className={'font-semibold text-lg text-slate-700'}>Paper</h3>
+              <h1 className={'font-semibold text-lg text-slate-700'}>Paper&process</h1>
             </div>
           </div>
         </div>
@@ -61,17 +61,18 @@ export default function DashboardEvents() {
 
           <table className="w-full bg-transparent border-collapse">
             <thead>
-              <tr>
-                <ColumnHeader>Title</ColumnHeader>
-               <ColumnHeader>Type</ColumnHeader>
+            <tr aligm="center">
+                <ColumnHeader>title</ColumnHeader>
+                <ColumnHeader>author</ColumnHeader>
+                <ColumnHeader>type</ColumnHeader>
+                <ColumnHeader>download</ColumnHeader>
+                <ColumnHeader></ColumnHeader>
+                <ColumnHeader>{ /*<i className="bi bi-download"></i> */}</ColumnHeader>
               </tr>
             </thead>
             <tbody>
               {data.map((meeting, idx) => (
-                
-                <div key={idx}>
                   <Dashboardrow  idx={meeting.id} {...meeting.attributes} />
-                </div>
               ))}
             </tbody>
           </table>
