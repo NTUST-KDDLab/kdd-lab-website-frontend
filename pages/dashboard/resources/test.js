@@ -13,30 +13,28 @@ export default function DashboardEvents() {
   var k="/resources/?populate[0]=file&populate[1]=author.avatar";
   let inputHandler = (e) => {
     //convert input text to lower case
-    var lowerCase = "="+e.target.value;
-    if(lowerCase=="="){
+    var lowerCase = e.target.value;
+    if(lowerCase===null){
       k="/resources/?populate[0]=file&populate[1]=author.avatar";
     }
     else{
-      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase;
+      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters[resources][title]="+lowerCase;
     }
     console.log(k);
     axiosInstance
       .get(k)
       .then((res) => {
         const json = res.data;
-        console.log('data',data);
         setData(json['data']);
         setPagination(json['meta']['pagination']);
       });
   };
-
   useEffect(() => {
     axiosInstance
       .get(k)
       .then((res) => {
         const json = res.data;
-        console.log('data',data);
+        console.log('data',data)
         setData(json['data']);
         setPagination(json['meta']['pagination']);
       });
@@ -55,20 +53,22 @@ export default function DashboardEvents() {
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
+          
         <div>
             <input type="text"  placeholder="Search for names.." onChange={inputHandler}/>
         </div>
-
           <table className="w-full bg-transparent border-collapse">
             <thead>
               <tr>
                 <ColumnHeader>Title</ColumnHeader>
-               <ColumnHeader>Type</ColumnHeader>
+                <ColumnHeader>author</ColumnHeader>
+                <ColumnHeader>slide</ColumnHeader>
+                <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
               </tr>
             </thead>
             <tbody>
               {data.map((meeting, idx) => (
-                
+
                 <div key={idx}>
                   <Dashboardrow  idx={meeting.id} {...meeting.attributes} />
                 </div>
