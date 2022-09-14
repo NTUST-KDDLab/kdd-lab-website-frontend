@@ -30,20 +30,15 @@ export default function Row({ idx, title, date, startTime, endTime, attendees })
       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
         <div className="flex">
           {attendeesLight.map((attendee, idx) => (
+            <div>
             <Avatar
               key={idx}
               src={attendee.attributes.avatar.data.attributes.url}
               alt={attendee.attributes.name}
-              shift={idx !== 0}
             />
-          ))}
-          {attendees.data.length >= 4 ? (
-            <div className="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4 bg-slate-50 flex justify-center items-center flex-shrink-0">
-              <div className="max-h-4">
-                <i className="bi bi-three-dots text-slate-700"></i>
-              </div>
+            {attendee.attributes.name}
             </div>
-          ) : null}
+          ))}
           {attendeesLight.length === 0 ? <div className="w-10 h-10 rounded-full flex flex-shrink-0"></div> : null}
         </div>
       </td>
