@@ -55,13 +55,13 @@ export default function DashboardEvents() {
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-        <div>
-            <input type="text"  placeholder="Search for names.." onChange={inputHandler}/>
+        <div >
+            <input type="search"  placeholder="Search for title.." onChange={inputHandler}/>
         </div>
 
           <table className="w-full bg-transparent border-collapse">
             <thead>
-            <tr aligm="center">
+            <tr >
                 <ColumnHeader>title</ColumnHeader>
                 <ColumnHeader>author</ColumnHeader>
                 <ColumnHeader>type</ColumnHeader>
