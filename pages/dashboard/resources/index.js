@@ -3,20 +3,44 @@ import axiosInstance from '../../../components/axiosInstance';
 import Dashboardrow from '../../../components/Events/dashboardrow';
 import { useEffect, useState } from 'react';
 
+
+
+
 export default function DashboardEvents() {
   let [data, setData] = useState(null);
   let [pagination, setPagination] = useState(null);
+  const [inputText, setInputText] = useState("");
+  var k="/resources/?populate[0]=file&populate[1]=author.avatar";
+  let inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = "="+e.target.value;
+    if(lowerCase=="="){
+      k="/resources/?populate[0]=file&populate[1]=author.avatar";
+    }
+    else{
+      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase;
+    }
+    console.log(k);
+    axiosInstance
+      .get(k)
+      .then((res) => {
+        const json = res.data;
+        console.log('data',data);
+        setData(json['data']);
+        setPagination(json['meta']['pagination']);
+      });
+  };
 
   useEffect(() => {
     axiosInstance
-      .get(`/events/?populate[0]=attendees.avatar&populate[1]=resources.author.avatar&populate[2]=resources.file`)
+      .get(k)
       .then((res) => {
         const json = res.data;
+        console.log('data',data);
         setData(json['data']);
         setPagination(json['meta']['pagination']);
       });
   }, []);
-
   if (data === null || pagination === null) {
     return <>Loading</>;
   }
@@ -26,25 +50,29 @@ export default function DashboardEvents() {
         <div className="rounded-t mb-0 px-6 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h3 className={'font-semibold text-lg text-slate-700'}>Paper</h3>
+              <h1 className={'font-semibold text-lg text-slate-700'}>Paper&process</h1>
             </div>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-          {/* Event table */}
+        <div >
+            <input type="search"  placeholder="Search for title.." onChange={inputHandler}/>
+        </div>
+
           <table className="w-full bg-transparent border-collapse">
             <thead>
-              <tr>
-                <ColumnHeader>Title</ColumnHeader>
+            <tr >
+                <ColumnHeader>title</ColumnHeader>
                 <ColumnHeader>author</ColumnHeader>
-                <ColumnHeader>slide</ColumnHeader>
-                <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
+                <ColumnHeader>type</ColumnHeader>
+                <ColumnHeader>download</ColumnHeader>
+                <ColumnHeader></ColumnHeader>
+                <ColumnHeader>{ /*<i className="bi bi-download"></i> */}</ColumnHeader>
               </tr>
             </thead>
             <tbody>
               {data.map((meeting, idx) => (
-                <Dashboardrow key={idx} idx={meeting.id} {...meeting.attributes} />
-                
+                  <Dashboardrow  idx={meeting.id} {...meeting.attributes} />
               ))}
             </tbody>
           </table>
@@ -71,6 +99,8 @@ export default function DashboardEvents() {
 //     },
 //   };
 // }
+
+
 
 DashboardEvents.layout = DashboardLayout;
 DashboardEvents.auth = false;
