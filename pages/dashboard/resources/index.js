@@ -13,30 +13,28 @@ export default function DashboardEvents() {
   var k="/resources/?populate[0]=file&populate[1]=author.avatar";
   let inputHandler = (e) => {
     //convert input text to lower case
-    var lowerCase = "="+e.target.value;
-    if(lowerCase=="="){
+    var lowerCase = e.target.value;
+    if(lowerCase===null){
       k="/resources/?populate[0]=file&populate[1]=author.avatar";
     }
     else{
-      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase;
+      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters[resources][title]="+lowerCase;
     }
     console.log(k);
     axiosInstance
       .get(k)
       .then((res) => {
         const json = res.data;
-        console.log('data',data);
         setData(json['data']);
         setPagination(json['meta']['pagination']);
       });
   };
-
   useEffect(() => {
     axiosInstance
       .get(k)
       .then((res) => {
         const json = res.data;
-        console.log('data',data);
+        console.log('data',data)
         setData(json['data']);
         setPagination(json['meta']['pagination']);
       });
@@ -50,29 +48,30 @@ export default function DashboardEvents() {
         <div className="rounded-t mb-0 px-6 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h1 className={'font-semibold text-lg text-slate-700'}>Paper&process</h1>
+              <h3 className={'font-semibold text-lg text-slate-700'}>Paper</h3>
             </div>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-        <div >
-            <input type="search"  placeholder="Search for title.." onChange={inputHandler}/>
+          
+        <div>
+            <input type="text"  placeholder="Search for names.." onChange={inputHandler}/>
         </div>
-
           <table className="w-full bg-transparent border-collapse">
             <thead>
-            <tr >
-                <ColumnHeader>title</ColumnHeader>
+              <tr>
+                <ColumnHeader>Title</ColumnHeader>
                 <ColumnHeader>author</ColumnHeader>
-                <ColumnHeader>type</ColumnHeader>
-                <ColumnHeader>download</ColumnHeader>
-                <ColumnHeader></ColumnHeader>
-                <ColumnHeader>{ /*<i className="bi bi-download"></i> */}</ColumnHeader>
+                <ColumnHeader>slide</ColumnHeader>
+                <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
               </tr>
             </thead>
             <tbody>
               {data.map((meeting, idx) => (
+
+                <div key={idx}>
                   <Dashboardrow  idx={meeting.id} {...meeting.attributes} />
+                </div>
               ))}
             </tbody>
           </table>

@@ -30,7 +30,7 @@ export default function Row({ idx, title, date, startTime, endTime, attendees })
       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
         <div className="flex">
           {attendeesLight.map((attendee, idx) => (
-            <div>
+            <div key={idx}>
             <Avatar
               key={idx}
               src={attendee.attributes.avatar.data.attributes.url}
