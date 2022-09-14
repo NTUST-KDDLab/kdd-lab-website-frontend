@@ -23,4 +23,3 @@ export default function Dashboardrow({ idx, file ,author,title,type}) {
   );
   }
 }
-}
