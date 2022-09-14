@@ -1,22 +1,44 @@
 import DashboardLayout from '../../../layouts/dashboard';
 import axiosInstance from '../../../components/axiosInstance';
-import Row from '../../../components/Events/Row';
+import Dashboardrow from '../../../components/Events/dashboardrow';
 import { useEffect, useState } from 'react';
+
+
+
 
 export default function DashboardEvents() {
   let [data, setData] = useState(null);
   let [pagination, setPagination] = useState(null);
-
-  useEffect(() => {
+  const [inputText, setInputText] = useState("");
+  var k="/resources/?populate[0]=file&populate[1]=author.avatar";
+  let inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target.value;
+    if(lowerCase===null){
+      k="/resources/?populate[0]=file&populate[1]=author.avatar";
+    }
+    else{
+      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters[resources][title]="+lowerCase;
+    }
+    console.log(k);
     axiosInstance
-      .get(`/events/?populate[0]=attendees.avatar&populate[1]=resources.author.avatar&sort=date:desc`)
+      .get(k)
       .then((res) => {
         const json = res.data;
         setData(json['data']);
         setPagination(json['meta']['pagination']);
       });
+  };
+  useEffect(() => {
+    axiosInstance
+      .get(k)
+      .then((res) => {
+        const json = res.data;
+        console.log('data',data)
+        setData(json['data']);
+        setPagination(json['meta']['pagination']);
+      });
   }, []);
-
   if (data === null || pagination === null) {
     return <>Loading</>;
   }
@@ -26,26 +48,30 @@ export default function DashboardEvents() {
         <div className="rounded-t mb-0 px-6 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h3 className={'font-semibold text-lg text-slate-700'}>Events</h3>
+              <h3 className={'font-semibold text-lg text-slate-700'}>Paper</h3>
             </div>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-          {/* Event table */}
+          
+        <div>
+            <input type="text"  placeholder="Search for names.." onChange={inputHandler}/>
+        </div>
           <table className="w-full bg-transparent border-collapse">
             <thead>
               <tr>
                 <ColumnHeader>Title</ColumnHeader>
-                <ColumnHeader>Date</ColumnHeader>
-                <ColumnHeader>Time</ColumnHeader>
-                <ColumnHeader>Attendees</ColumnHeader>
-                <ColumnHeader></ColumnHeader>
+                <ColumnHeader>author</ColumnHeader>
+                <ColumnHeader>slide</ColumnHeader>
                 <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
               </tr>
             </thead>
             <tbody>
               {data.map((meeting, idx) => (
-                <Row key={idx} idx={meeting.id} {...meeting.attributes} />
+
+                <div key={idx}>
+                  <Dashboardrow  idx={meeting.id} {...meeting.attributes} />
+                </div>
               ))}
             </tbody>
           </table>
@@ -72,6 +98,8 @@ export default function DashboardEvents() {
 //     },
 //   };
 // }
+
+
 
 DashboardEvents.layout = DashboardLayout;
 DashboardEvents.auth = false;
