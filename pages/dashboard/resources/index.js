@@ -13,12 +13,12 @@ export default function DashboardEvents() {
   var k="/resources/?populate[0]=file&populate[1]=author.avatar";
   let inputHandler = (e) => {
     //convert input text to lower case
-    var lowerCase = e.target.value;
-    if(lowerCase===null){
+    var lowerCase = "="+e.target.value;
+    if(lowerCase=="="){
       k="/resources/?populate[0]=file&populate[1]=author.avatar";
     }
     else{
-      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters[resources][title]="+lowerCase;
+      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase;
     }
     console.log(k);
     axiosInstance
@@ -48,30 +48,32 @@ export default function DashboardEvents() {
         <div className="rounded-t mb-0 px-6 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h3 className={'font-semibold text-lg text-slate-700'}>Paper</h3>
+              <h3 className={'font-semibold text-lg text-slate-700'}>Paper＆process</h3>
             </div>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
           
         <div>
-            <input type="text"  placeholder="Search for names.." onChange={inputHandler}/>
+            <input className="block w-full overflow-x-auto font-semibold text-lg text-slate-700 border border-solid border-gray-300"
+            type="text"  placeholder="Search for title..(注意大小寫)" onChange={inputHandler}/>
         </div>
           <table className="w-full bg-transparent border-collapse">
             <thead>
               <tr>
                 <ColumnHeader>Title</ColumnHeader>
                 <ColumnHeader>author</ColumnHeader>
-                <ColumnHeader>slide</ColumnHeader>
+                <ColumnHeader>type</ColumnHeader>
+                <ColumnHeader>download</ColumnHeader>
                 <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
               </tr>
             </thead>
             <tbody>
-              {data.map((meeting, idx) => (
 
-                <div key={idx}>
-                  <Dashboardrow  idx={meeting.id} {...meeting.attributes} />
-                </div>
+              {data.map((meeting, idx) => (
+                <>
+                  <Dashboardrow    idx={meeting.id} {...meeting.attributes} />
+                  </>
               ))}
             </tbody>
           </table>
