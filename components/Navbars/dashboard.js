@@ -50,7 +50,7 @@ export default function Sidebar() {
         <div className={'w-full flex flex-col justify-start' + (collapseShow ? '' : ' hidden lg:block')}>
           <NavList>
             <NavLink name="Dashboard" path={dashboardPath} router={router} />
-            <NavLink name="paper&process" path={res} router={router} />
+            <NavLink name="paper&progress" path={res} router={router} />
             <NavLink name="home" path={home} router={router} />
           </NavList>
         </div>

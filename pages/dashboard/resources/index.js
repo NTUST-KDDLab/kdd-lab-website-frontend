@@ -10,15 +10,15 @@ export default function DashboardEvents() {
   let [data, setData] = useState(null);
   let [pagination, setPagination] = useState(null);
   const [inputText, setInputText] = useState("");
-  var k="/resources/?populate[0]=file&populate[1]=author.avatar";
+  var k="/resources/?populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
   let inputHandler = (e) => {
     //convert input text to lower case
     var lowerCase = "="+e.target.value;
     if(lowerCase=="="){
-      k="/resources/?populate[0]=file&populate[1]=author.avatar";
+      k="/resources/?populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
     }
     else{
-      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase;
+      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase+"&sort=updatedAt:desc";
     }
     console.log(k);
     axiosInstance
@@ -48,13 +48,13 @@ export default function DashboardEvents() {
         <div className="rounded-t mb-0 px-6 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h3 className={'font-semibold text-lg text-slate-700'}>Paper＆process</h3>
+              <h3 className={'font-semibold text-lg text-slate-700'}>Paper＆progress</h3>
             </div>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
           
-        <div>
+        <div className="rounded-t mb-0 px-6 py-3 border-0">
             <input className="block w-full overflow-x-auto font-semibold text-lg text-slate-700 border border-solid border-gray-300"
             type="text"  placeholder="Search for title..(注意大小寫)" onChange={inputHandler}/>
         </div>
@@ -63,9 +63,9 @@ export default function DashboardEvents() {
               <tr>
                 <ColumnHeader>Title</ColumnHeader>
                 <ColumnHeader>author</ColumnHeader>
+                <ColumnHeader>upDate</ColumnHeader>
                 <ColumnHeader>type</ColumnHeader>
                 <ColumnHeader>download</ColumnHeader>
-                <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
               </tr>
             </thead>
             <tbody>
