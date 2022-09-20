@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import File from '../File';
 import Resfile from '../resfile';
-export default function Dashboardrow({ idx, file ,author,title,type}) {
+export default function Dashboardrow({ idx, file ,author,title,type,updatedAt}) {
   if (file.data != null) {
   return (
 
@@ -11,6 +11,7 @@ export default function Dashboardrow({ idx, file ,author,title,type}) {
       </th>
     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{author.data.attributes.name}</td>
     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{type}</td>
+    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{updatedAt}</td>
     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
       <div className="flex">
       <div>
