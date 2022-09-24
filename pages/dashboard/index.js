@@ -38,7 +38,7 @@ export default function DashboardEvents() {
                 <ColumnHeader>Title</ColumnHeader>
                 <ColumnHeader>Date</ColumnHeader>
                 <ColumnHeader>Time</ColumnHeader>
-                <ColumnHeader>Attendees</ColumnHeader>
+                <ColumnHeader>presenter</ColumnHeader>
                 <ColumnHeader>{/* <i className="bi bi-three-dots-vertical"></i> */}</ColumnHeader>
               </tr>
             </thead>
