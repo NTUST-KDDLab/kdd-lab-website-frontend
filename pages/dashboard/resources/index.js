@@ -34,7 +34,6 @@ export default function DashboardEvents() {
       .get(k)
       .then((res) => {
         const json = res.data;
-        console.log('data',data)
         setData(json['data']);
         setPagination(json['meta']['pagination']);
       });
@@ -63,8 +62,8 @@ export default function DashboardEvents() {
               <tr>
                 <ColumnHeader>Title</ColumnHeader>
                 <ColumnHeader>author</ColumnHeader>
-                <ColumnHeader>upDate</ColumnHeader>
                 <ColumnHeader>type</ColumnHeader>
+                <ColumnHeader>upDate</ColumnHeader>
                 <ColumnHeader>download</ColumnHeader>
               </tr>
             </thead>
