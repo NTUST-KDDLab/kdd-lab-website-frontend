@@ -20,7 +20,6 @@ export default function DashboardEvents() {
     else{
       k="/resources/?populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase+"&sort=updatedAt:desc";
     }
-    console.log(k);
     axiosInstance
       .get(k)
       .then((res) => {
