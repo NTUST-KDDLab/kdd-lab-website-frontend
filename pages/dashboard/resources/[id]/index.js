@@ -109,8 +109,8 @@ export async function getServerSideProps() {
 
 
 
-paperEvents.layout = DashboardLayout;
-paperEvents.auth = false;
+PaperEvents.layout = DashboardLayout;
+PaperEvents.auth = false;
 
 const ColumnHeader = ({ children }) => {
   return (
