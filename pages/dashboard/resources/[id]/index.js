@@ -1,16 +1,32 @@
-import DashboardLayout from '../../../layouts/dashboard';
-import axiosInstance from '../../../components/axiosInstance';
-import Dashboardrow from '../../../components/Events/dashboardrow';
+import DashboardLayout from '../../../../layouts/dashboard';
+import axiosInstance from '../../../../components/axiosInstance';
+import Dashboardrow from '../../../../components/Events/dashboardrow';
+import Pagination from '../../../../components/Paginations';
 import { useEffect, useState } from 'react';
-import Pagination from '../../../components/Paginations';
+import { useRouter } from 'next/router';
 
 
 
-export default function DashboardEvents() {
+export default function PaperEvents() {
+  const router = useRouter();
+  const { id } = router.query;
   let [data, setData] = useState(null);
   let [pagination, setPagination] = useState(null);
-  let [pageIndex, setPageIndex] = useState(1);
-  var k="/resources/?pagination[page]=1&pagination[pageSize]=25&populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
+  if ({id}!=null){
+    var k="/resources/?pagination[page]="+`${id}`+"&pagination[pageSize]=20&populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
+  }
+  else{
+    var k="/resources/?pagination[page]=1&pagination[pageSize]=20&populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
+  }
+  useEffect(() => {
+    axiosInstance
+      .get(k)
+      .then((res) => {
+        const json = res.data;
+        setData(json['data']);
+        setPagination(json['meta']['pagination']);
+      });
+  }, []);
   let inputHandler = (e) => {
     //convert input text to lower case
     var lowerCase = "="+e.target.value;
@@ -25,18 +41,10 @@ export default function DashboardEvents() {
       .then((res) => {
         const json = res.data;
         setData(json['data']);
+        console.log('page',json);
         setPagination(json['meta']['pagination']);
       });
   };
-  useEffect(() => {
-    axiosInstance
-      .get(k)
-      .then((res) => {
-        const json = res.data;
-        setData(json['data']);
-        setPagination(json['meta']['pagination']);
-      });
-  }, []);
   if (data === null || pagination === null) {
     return <>Loading</>;
   }
@@ -67,7 +75,6 @@ export default function DashboardEvents() {
               </tr>
             </thead>
             <tbody>
-
               {data.map((meeting, idx) => (
                 <>
                   <Dashboardrow    idx={meeting.id} {...meeting.attributes} />
@@ -75,37 +82,35 @@ export default function DashboardEvents() {
               ))}
             </tbody>
           </table>
-          {/* Event pagination */}
-          {/* // TODO */}
         </div>
       </div>
       <div align="center">
-        <Pagination idx={pagination.pageCount}></Pagination>
+        <Pagination idx={pagination.pageCount} ></Pagination>
       </div>
     </>
   );
 }
 
-// export async function getServerSideProps() {
-//   const res = await axiosInstance.get(
-//     `/events?populate[attendees][populate]=*&populate[resources][populate]=*&sort=date:desc`
-//   );
-//   const json = await res.data;
-//   const data = json['data'];
-//   const pagination = json['meta']['pagination'];
+export async function getServerSideProps() {
+  const res = await axiosInstance.get(
+    `/events?populate[attendees][populate]=*&populate[resources][populate]=*&sort=date:desc`
+  );
+  const json = await res.data;
+  const data = json['data'];
+  const pagination = json['meta']['pagination'];
 
-//   return {
-//     props: {
-//       data,
-//       pagination,
-//     },
-//   };
-// }
+  return {
+    props: {
+      data,
+      pagination,
+    },
+  };
+}
 
 
 
-DashboardEvents.layout = DashboardLayout;
-DashboardEvents.auth = false;
+PaperEvents.layout = DashboardLayout;
+PaperEvents.auth = false;
 
 const ColumnHeader = ({ children }) => {
   return (
