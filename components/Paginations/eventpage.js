@@ -11,12 +11,12 @@ const content = {
   zh: zh.footer,
 };
 
-export default function Pagination({idx}) {
+export  default function EventPagination({idx}) {
   let pageIntoArray = Array.from(Array(idx).keys())
   let btn = (e) => {
     //convert input text to lower case
     var id = e.target.value;
-    window.location.href="/dashboard/resources/"+id;
+    window.location.href="/dashboard/"+id;
   };
   return (
     <nav aria-label=" my-6">
@@ -34,5 +34,3 @@ export default function Pagination({idx}) {
   </nav>
   );
 }
-
-

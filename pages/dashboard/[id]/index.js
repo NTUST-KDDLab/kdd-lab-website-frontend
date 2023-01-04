@@ -1,17 +1,18 @@
-import DashboardLayout from '../../layouts/dashboard';
-import axiosInstance from '../../components/axiosInstance';
-import Row from '../../components/Events/Row';
+import DashboardLayout from '../../../layouts/dashboard';
+import axiosInstance from '../../../components/axiosInstance';
+import Row from '../../../components/Events/Row';
 import { useEffect, useState } from 'react';
-import EventPagination from '../../components/Paginations/eventpage';
-
+import EventPagination from '../../../components/Paginations/eventpage';
+import { useRouter } from 'next/router';
 
 export default function DashboardEvents() {
   let [data, setData] = useState(null);
   let [pagination, setPagination] = useState(null);
-
+  const router = useRouter();
+  const { id } = router.query;
   useEffect(() => {
     axiosInstance
-      .get(`/events/?pagination[page]=1&pagination[pageSize]=20&populate[0]=attendees.avatar&populate[1]=resources.author.avatar&sort=date:desc`)/*拿最新10個日期資訊 */
+      .get(`/events/?pagination[page]=${id}&pagination[pageSize]=20&populate[0]=attendees.avatar&populate[1]=resources.author.avatar&sort=date:desc`)/*拿最新10個日期資訊 */
       .then((res) => {
         const json = res.data;
         console.log(json)
