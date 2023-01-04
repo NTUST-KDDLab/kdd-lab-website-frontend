@@ -24,7 +24,7 @@ export  default function EventPagination({idx}) {
       {
         pageIntoArray.map(page => {
           return <button key={page} >
-            <button  class="bg-gray-300 hover:bg-gray-400 text-gray-800  py-2 px-4 rounded-l" value={page+1} onClick={btn}>
+            <button  className="bg-gray-300 hover:bg-gray-400 text-gray-800  py-2 px-4 rounded-l" value={page+1} onClick={btn}>
             {page + 1}
             </button>
           </button>

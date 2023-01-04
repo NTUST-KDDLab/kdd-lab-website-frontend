@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 
 
-export default function paperEvents() {
+export default function PaperEvents() {
   const router = useRouter();
   const { id } = router.query;
   let [data, setData] = useState(null);
