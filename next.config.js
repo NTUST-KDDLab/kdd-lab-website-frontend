@@ -8,4 +8,4 @@ const nextConfig = {
   output: 'standalone',
 };
 
-module.exports = {nextConfig,swcMinify: false};
+module.exports = nextConfig;
