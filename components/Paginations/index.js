@@ -14,7 +14,6 @@ const content = {
 export default function Pagination({idx}) {
   let pageIntoArray = Array.from(Array(idx).keys())
   let btn = (e) => {
-    //convert input text to lower case
     var id = e.target.value;
     window.location.href="/dashboard/resources/"+id;
   };
