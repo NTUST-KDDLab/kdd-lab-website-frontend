@@ -10,7 +10,7 @@ export default function DashboardEvents() {
   let [data, setData] = useState(null);
   let [pagination, setPagination] = useState(null);
   let [pageIndex, setPageIndex] = useState(1);
-  var k="/resources/?pagination[page]=1&pagination[pageSize]=25&populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
+  var k="/resources/?pagination[page]=1&pagination[pageSize]=20&populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
   let inputHandler = (e) => {
     //convert input text to lower case
     var lowerCase = "="+e.target.value;
