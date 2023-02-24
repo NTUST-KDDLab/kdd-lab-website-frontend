@@ -15,10 +15,10 @@ export default function DashboardEvents() {
     //convert input text to lower case
     var lowerCase = "="+e.target.value;
     if(lowerCase=="="){
-      k="/resources/?populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
+      k="/resources/?pagination[page]=1&pagination[pageSize]=20&populate[0]=file&populate[1]=author.avatar&sort=updatedAt:desc";
     }
     else{
-      k="/resources/?populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase+"&sort=updatedAt:desc";
+      k="/resources/?pagination[page]=1&pagination[pageSize]=20&populate[0]=file&populate[1]=author.avatar&filters%5Btitle%5D%5B$contains%5D"+lowerCase+"&sort=updatedAt:desc";
     }
     axiosInstance
       .get(k)
