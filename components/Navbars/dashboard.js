@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut,signIn } from "next-auth/react"
+
 const NavList = ({ children }) => {
   return <ul className="lg:flex-col lg:min-w-full flex flex-col list-none">{children}</ul>;
 };
@@ -37,8 +38,6 @@ export default function Sidebar() {
     <>
       <nav className="top-0 fixed lg:relative z-50 w-full flex flex-wrap items-center justify-between lg:justify-start navbar-expand-lg bg-white shadow-xl lg:overflow-y-auto flex-col lg:flex-nowrap lg:w-80 py-4 px-6 ">
         <div className="w-full flex flex-row lg:flex-col">
-         
-         
           <button
             className="cursor-pointer text-black opacity-50 ml-auto lg:ml-0 lg:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
             type="button"
@@ -53,6 +52,7 @@ export default function Sidebar() {
             <NavLink name="paper&progress" path={res} router={router} />
             <NavLink name="home" path={home} router={router} />
           </NavList>
+          <button   className={'text-xs uppercase py-3 font-bold block text-slate-700 hover:text-slate-500'}  onClick={() => signOut()}>Sign-out</button>
         </div>
       </nav>
     </>
