@@ -43,8 +43,8 @@ services:
 
 networks:
   proxy:
-    external:
-      name: self-nginx-proxy
+    name: self-nginx-proxy
+    external: true
   nextjs:
     name: nextjs
     driver: bridge
